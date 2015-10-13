@@ -99,6 +99,7 @@ public class BookAppointment implements IBookAppointment
                 {
                    
                     AppointmentNumber = BusinessDelegator.createAppointment(appt);
+                    System.out.println(AppointmentNumber);
                     if(AppointmentNumber == null ||AppointmentNumber.equals("") )
                     {
                         throw new LAMSException("ERROR: Error in booking an appointment");

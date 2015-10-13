@@ -364,8 +364,6 @@ String appId=BusinessDelegator.getNextAppointmentId();
 //IComponentsData db = new DB();
 //db.initialLoad("LAMS");
 
-
-
 HashMap testMap=p_Appointment.getTestDetails();
 
         //extra steps here due to persistence api and join, need to create objects in list
@@ -394,7 +392,7 @@ if(testMap!=null)
         String sql ="select * from PSC where id='"+p_Appointment.getPatientId()+"'";
             
        dbAppointment.setPscid(BusinessDelegator.getDBPSC(p_Appointment.getPatientServiceCenterCode()));
-
+       
         boolean good = BusinessDelegator.db.addData(dbAppointment);
 if(good)
 {
@@ -434,7 +432,7 @@ if(rs!=null)
         {
             //if first time through do the headings
 
-
+        	psc=new components.data.PSC();
             for (Iterator it=row.keySet().iterator(); it.hasNext(); )
             {
 
@@ -442,7 +440,7 @@ if(rs!=null)
                 String value = row.get(colName);
                 if(colName.equals("NAME"))
                 {
-                 psc=new components.data.PSC();
+                 //psc=new components.data.PSC();
                  psc.setName(value);
                  //System.out.printf("%s",value);
                 count++;

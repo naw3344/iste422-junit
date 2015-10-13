@@ -40,7 +40,7 @@ public class TestDB {
             psc = ((Appointment)obj).getPscid();
         }
         System.out.println("************");
-        Appointment newAppt = new Appointment("800",java.sql.Date.valueOf("2009-09-01"),java.sql.Time.valueOf("10:15:00"));
+        Appointment newAppt = new Appointment("800",java.sql.Date.valueOf("2016-09-01"),java.sql.Time.valueOf("10:15:00"));
         //extra steps here due to persistence api and join, need to create objects in list
         List<AppointmentLabTest> tests = new ArrayList<AppointmentLabTest>();
         AppointmentLabTest test = new AppointmentLabTest("800","86900","292.9");
@@ -53,6 +53,22 @@ public class TestDB {
         newAppt.setPscid(psc);
 
         boolean good = db.addData(newAppt);
+        
+        newAppt = new Appointment("1000",java.sql.Date.valueOf("2016-09-02"),java.sql.Time.valueOf("10:15:00"));
+        //extra steps here due to persistence api and join, need to create objects in list
+        tests = new ArrayList<AppointmentLabTest>();
+        test = new AppointmentLabTest("800","86900","292.9");
+        test.setDiagnosis((Diagnosis)db.getData("Diagnosis", "code='292.9'").get(0));
+        test.setLabTest((LabTest)db.getData("LabTest","id='86900'").get(0));
+        tests.add(test);
+        newAppt.setAppointmentLabTestCollection(tests);
+        newAppt.setPatientid(patient);
+        newAppt.setPhlebid(phleb);
+        newAppt.setPscid(psc);
+
+        good = db.addData(newAppt);
+        
+        
         objs = db.getData("Appointment", "");
         for (Object obj : objs){
             System.out.println(obj);
