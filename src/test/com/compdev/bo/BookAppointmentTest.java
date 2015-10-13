@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * 
- * @author Neal Willbur, 
+ * @author Neal Willbur, Anthony Perez
  *
  */
 public class BookAppointmentTest {
